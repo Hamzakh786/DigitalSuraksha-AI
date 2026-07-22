@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raksha Grid — Digital Public Safety Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="grid-noise"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">RG</div>
+    <div class="brand-text">
+      <span class="brand-name">Raksha Grid</span>
+      <span class="brand-sub">Digital Public Safety Intelligence · Prototype</span>
+    </div>
+  </div>
+  <div class="status-pill" id="apiStatus">
+    <span class="dot"></span> checking backend…
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="scam">
+    <span class="tab-index">01</span>
+    <span class="tab-label">Digital Arrest<br>Scam Detector</span>
+  </button>
+  <button class="tab" data-tab="currency">
+    <span class="tab-index">02</span>
+    <span class="tab-label">Counterfeit<br>Currency Scan</span>
+  </button>
+  <button class="tab" data-tab="shield">
+    <span class="tab-index">03</span>
+    <span class="tab-label">Citizen Fraud<br>Shield</span>
+  </button>
+</nav>
+
+<main>
+
+  <!-- ============ FEATURE 1: SCAM DETECTOR ============ -->
+  <section class="panel active" id="panel-scam">
+    <div class="panel-head">
+      <h1>Digital Arrest Scam Detection &amp; Alerting</h1>
+      <p>Paste a call transcript, SMS, or WhatsApp message. The engine flags digital-arrest
+        and impersonation-scam patterns before money moves.</p>
+    </div>
+
+    <div class="workspace two-col">
+      <div class="input-card">
+        <label class="field-label">Call / message transcript</label>
+        <textarea id="scamInput" rows="12" placeholder="e.g. Caller claimed to be from Mumbai Customs, said a parcel with my Aadhaar was seized carrying contraband, asked me to stay on video call and not disconnect, demanded Rs 50,000 transfer to 'verify' my account or a digital arrest warrant would be issued..."></textarea>
+        <div class="input-row">
+          <button class="btn-sample" id="scamSampleBtn" type="button">Load sample</button>
+          <button class="btn-primary" id="scamAnalyzeBtn" type="button">Analyse transcript</button>
+        </div>
+      </div>
+
+      <div class="result-card" id="scamResult">
+        <div class="empty-state">
+          <div class="empty-glyph">◎</div>
+          <p>Results will appear here once you analyse a transcript.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE 2: CURRENCY SCAN ============ -->
+  <section class="panel" id="panel-currency">
+    <div class="panel-head">
+      <h1>Counterfeit Currency Identification Agent</h1>
+      <p>Upload a photo of a currency note. A computer-vision pipeline checks print quality,
+        microprint density, security-thread signature, colour band and edge texture.</p>
+    </div>
+
+    <div class="workspace two-col">
+      <div class="input-card">
+        <label class="field-label">Note image</label>
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="currencyFile" accept="image/*" hidden />
+          <div id="dropzoneEmpty">
+            <div class="empty-glyph">⬒</div>
+            <p>Click to upload, or drag a note photo here</p>
+            <p class="hint">JPEG or PNG · flat, well-lit, single note</p>
+          </div>
+          <img id="dropzonePreview" hidden />
+        </div>
+
+        <label class="field-label" style="margin-top:16px;">Declared denomination</label>
+        <select id="denomSelect">
+          <option value="auto">Auto / unknown</option>
+          <option value="10">₹10</option>
+          <option value="20">₹20</option>
+          <option value="50">₹50</option>
+          <option value="100">₹100</option>
+          <option value="200">₹200</option>
+          <option value="500">₹500</option>
+          <option value="2000">₹2000 (legacy)</option>
+        </select>
+
+        <div class="input-row">
+          <button class="btn-primary" id="currencyAnalyzeBtn" type="button">Run CV analysis</button>
+        </div>
+      </div>
+
+      <div class="result-card" id="currencyResult">
+        <div class="empty-state">
+          <div class="empty-glyph">◎</div>
+          <p>Upload a note image to run the detection pipeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE 3: FRAUD SHIELD CHAT ============ -->
+  <section class="panel" id="panel-shield">
+    <div class="panel-head">
+      <h1>Citizen Fraud Shield</h1>
+      <p>Describe a suspicious call, SMS, or payment request. Get a real-time risk read and
+        guided next steps in plain language.</p>
+    </div>
+
+    <div class="workspace chat-workspace">
+      <div class="chat-card">
+        <div class="chat-log" id="chatLog">
+          <div class="chat-msg assistant">
+            <div class="chat-avatar">FS</div>
+            <div class="chat-bubble">
+              Hi, I'm Fraud Shield. Tell me what happened — a call, SMS, or payment request
+              that felt off — and I'll help you work out the risk and what to do next.
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <textarea id="chatInput" rows="2" placeholder="Type what happened…"></textarea>
+          <button class="btn-primary" id="chatSendBtn" type="button">Send</button>
+        </div>
+        <div class="chat-footer">
+          In an active emergency: National Cyber Crime Helpline <strong>1930</strong> ·
+          <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Prototype build for the "AI for Digital Public Safety" challenge · Not for operational use ·
+  All verdicts are heuristic / LLM-assisted demo output.
+</footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
