@@ -1,4 +1,21 @@
 # Raksha Grid — AI for Digital Public Safety (Prototype)
+## Live Demo
+
+- Frontend: https://digital-suraksha-ai.vercel.app
+- Backend: https://digitalsuraksha-ai.onrender.com
+
+## Important Note
+
+This project uses the xAI (Grok) API for AI-powered analysis.
+
+The application is fully deployed and integrated. However, if the demo displays a `403 permission-denied` error, it is because the xAI API account has no remaining credits. The code and API integration are complete, but a valid xAI API key with available credits is required to use the AI features.
+
+To run locally:
+
+1. Create a `backend/.env` file.
+2. Add:
+   ```env
+   GROK_API_KEY=your_xai_api_key
 
 A working prototype for the "AI for Digital Public Safety: Defeating Counterfeiting, Fraud &
 Digital Arrest Scams" challenge, scoped to **3 of the suggested build areas**, chosen because
